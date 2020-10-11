@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <body  background="picture/5.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%; background-attachment: fixed;">
+    <body  background="" style=" background-repeat:no-repeat ;background-size:100% 100%; background-attachment: fixed;">
 
-    <title>师门树</title>
-
+    <title>学术家族树</title>
+    <button class="button2" value=重置 onclick="location.reload()">重置</button>
     <style>
                body {
             margin: 0px;
@@ -28,28 +28,28 @@
             opacity: 0.3;
             z-index: -3;
         }
+       
+        .node circle {   /*圆形文本框*/
+            fill: rgb(205, 219, 72);  
+            stroke:rgb(205, 219, 72); /*文本框边界颜色*/
+            stroke-width: 3px;  /*文本框边界宽度*/
+        }
         
-        .node circle {
-            fill: rgba(201,227,138,1)
-            stroke:rgba(201,227,138,1)
+        .node rect {    /*矩形文本框*/
+            fill: #16b0df;
+            stroke: rgb(202, 54, 128);
             stroke-width: 3px;
         }
         
-        .node rect {
-            fill: #C9E38A;
-            stroke: rgba(201,227,138,1);
-            stroke-width: 2px;
-        }
-        
         .node text {
-            font: 15px sans-serif;
+            font: 15px sans-serif;  /*树文本字体大小*/
         }
         
         .link {
             fill:none;
 			
-            stroke: rgb(39,222,204);
-            stroke-width: 2px;
+            stroke: rgb(202, 54, 128);
+            stroke-width: 4px;
         }
         
         .flex-container {
@@ -59,7 +59,7 @@
         
         .flex-item1 {
             left: 1vw;
-            width: 20%;
+            width: 99%;
             height:15%;
             top: 2%;
             position: absolute;
@@ -67,35 +67,50 @@
         }
         
         .flex-item2 {
-            left: 1vw;
-            width: 20%;
-            height: 20%;
-            top: 18%;
+            left: 35vw;
+            width: 30%;
+            height: 21%;
+            top: 20%;
             position: absolute;
-			border : 3px solid rgb(201,227,138);
+			border : 4px solid rgb(117, 219, 226);
             opacity: 0.7;
         }
         
         .flex-item3 {
-            left: 30vw;
-            width: 58%;
-            top: 2%;
+            left: 20vw;
+            width: 60%;
+            top: 70%;
             height: 15%;
             position: absolute;
             z-index: -2;
         }
         
+        .button2 {
+            background-color: #16b0df;
+            color:#ffffff;
+            float:left;
+            width: 150px;
+            top: 45.3%;
+            padding: 13px;
+            margin-left:820px;
+            font-size: 25px;
+            border-radius: 10px;
+            position: absolute;
+            outline:none;
+            opacity: 0.7;
+        }
+
         #show-tree {
-            <!--position: relative;
-            -->left: 1%;
+            position: relative;
+            left: 1%;
             top: 2%;
             height: 100%;
-			color:#C9E38A;
+			color: #16b0df;
             font-size: 30px;
             font-weight: bold;
             text-align: center;
             line-height: 5vh;
-            text-shadow: rgb(34, 34, 34) 2px 2px 3px;
+            text-shadow: rgb(31, 173, 26) 2px 2px 3px;
            
             border-radius: 6px;
             opacity: 0.7;
@@ -103,29 +118,29 @@
         
         #titlename {
             text-align: center;
-            color:#C9E38A;
+            color: #16b0df;
             font-size: 30px;
             font-weight: bold;
             height: 100%;
             line-height: 15vh;
-            text-shadow: rgb(34, 34, 34) 2px 2px 3px;
+            text-shadow: rgb(135, 209, 228) 2px 2px 3px;
 		
             border-radius: 6px;
         }
         
         #textbotton {
             font-size: 25px;
-            width: 50%;
+            width: 150px;
             text-align: center;
             background: none;
             border-style: none;
-            color:#C9E38A;
+            color:#fdfbfb;
             height: 40%;
             top: 120%;
             line-height: 50%;
             position: absolute;
-            text-shadow: rgb(34, 34, 34) 2px 2px 3px;
-			background:#C9E38A;
+            text-shadow: rgb(240, 142, 142) 2px 2px 3px;
+			background: #16b0df;
            border-radius: 6px;
         }
         
@@ -134,10 +149,10 @@
             left: 760px;
             width: 500px;
             height: 80px;
-            border-style: solid;
+            border-style:dashed;
             border-width: 1px;
             position: absolute;
-            border: 3px solid #C9E38A;
+            border: 3px solid #16b0df;
             opacity: 0.3;
         }
         
@@ -147,7 +162,7 @@
             height: 450px;
             position: absolute;
             top: 100px;
-           boder: 3px solid #C9E38A;
+           border: 3px solid #16b0df;
             opacity: 0.7;
         }
         
@@ -156,14 +171,15 @@
             height: 543px;
             position: absolute;
 			
-			boder: 3px solid #C9E38A;
+			border: 20px solid #16b0df;
          
             opacity: 0;
         }
         
         #user {
-            width: 20vw;
+            width: 30vw;
             height: 20vh;
+            outline:none;
         }
         
         -->
@@ -289,14 +305,14 @@
                  //添加连接点---此处设置的是圆圈过渡时候的效果（颜色）
                  // nodeEnter.append("circle")
                  //   .attr("r", 1e-6)
-                 //   .style("fill", function(d) { return d._children ? "lightrgba(255,142,255))" : "rgba (255,142,255)"; });//d 代表数据，也就是与某元素绑定的数据。
+                 //   .style("fill", function(d) { return d._children ? "lightrgba(255,142,255))" : "rgb(135, 209, 228)"; });//d 代表数据，也就是与某元素绑定的数据。
                  nodeEnter.append("rect")
                      .attr("x", -35)
                      .attr("y", -22)
                      .attr("width", 100)
                      .attr("height", 25)
                      .attr("rx", 10)
-                     .style("fill", "rgba(134,204,87)"); //d 代表数据，也就是与某元素绑定的数据。
+                     .style("fill", "rgb(135, 209, 228)"); //d 代表数据，也就是与某元素绑定的数据。
 
                  //添加标签
                  nodeEnter.append("text")
@@ -344,7 +360,7 @@
                      .attr("width", 100)
                      .attr("height", 25)
                      .attr("rx", 10)
-                     .style("fill", "rgba(134,204,87)");
+                     .style("fill", "rgb(135, 209, 228)");
 
                  nodeUpdate.select("text")
                      .attr("text-anchor", "middle")
@@ -367,7 +383,7 @@
                      .attr("width", 100)
                      .attr("height", 25)
                      .attr("rx", 10)
-                     .style("fill", "rgba(134,204,87)");
+                     .style("fill", "rgb(135, 209, 228)");
 
                  nodeExit.select("text")
                      .attr("text-anchor", "middle")
@@ -657,12 +673,12 @@
    <div class="bg-container"></div>
     <div class="flex-container">
         <div class="flex-item1">
-            <p id="titlename">输入</p>
+            <p id="titlename">学术家族树</p>
         </div>
         <div class="flex-item2">
             <textarea rows="10" cols="30" style="background:none;border-style:none;" id="user"></textarea>
             </br>
-            <button id="textbotton" onClick="chase()">提交</button>
+            <button id="textbotton" onClick="chase()">提交文本</button>
         </div>
         <div class="flex-item3">
             <p id="show-tree">输出家族树</p>
